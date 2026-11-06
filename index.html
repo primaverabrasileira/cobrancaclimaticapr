@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B5E2E">
+<meta name="description" content="Mobilização cidadã para cobrar compromissos públicos diante da crise climática no Paraná.">
+<title>Cobre quem decide: crise climática no Paraná</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  color-scheme: light dark;
+  /* Bandeira do PR: verde #00E600, branco, azul #0080FF. Versões mais escuras
+     (--deep, --navy) são usadas onde há texto, para garantir contraste. */
+  --green:#00E600; --blue:#0080FF; --deep:#0B5E2E; --navy:#0A4C99;
+  --bg:#fff; --tx:#1d2420; --mut:#505a53; --tint:#eef7f0; --bd:#cfdcd2;
+  --btn:#0B5E2E; --btnx:#fff; --link:#0A4C99;
+}
+@media(prefers-color-scheme:dark) {
+  :root {
+    --bg:#131c17; --tx:#fff; --mut:#c3cec6; --tint:#1d2a22; --bd:#3b4d41;
+    --btn:#00E600; --btnx:#0f1a13; --link:#66B3FF;
+  }
+}
+* {box-sizing:border-box}
+body {margin:0; background:var(--bg); color:var(--tx); font:1rem/1.6 Figtree,system-ui,sans-serif;}
+.band {
+  height:1.1rem;
+  background:linear-gradient(to right, var(--green) 0 33.33%, #fff 33.33% 66.66%, var(--blue) 66.66% 100%);
+}
+.mid {background:var(--deep); color:#fff; padding:1.6rem 0 1.8rem; border-bottom:5px solid var(--blue);}
+.mid-inner {max-width:44rem; margin:auto; padding:0 1.1rem; display:flex; align-items:center; gap:1.4rem;}
+.mid svg {width:6.5rem; height:6.5rem; flex:none;}
+h1 {font:800 clamp(1.8rem,5.4vw,2.7rem)/1.08 "Bricolage Grotesque",sans-serif; margin:0 0 .7rem;}
+.lead {margin:0; color:#eafbee; max-width:34rem;}
+main {max-width:44rem; margin:auto; padding:1.8rem 1.1rem 3rem;}
+.who {display:grid; grid-template-columns:1fr 1fr; gap:.9rem; margin:1rem 0 .8rem;}
+label {display:block; font-weight:700; font-size:.92rem;}
+input,select {
+  width:100%; margin-top:.3rem; padding:.65rem .75rem; font:inherit; color:var(--tx);
+  background:var(--bg); border:2px solid var(--bd); border-radius:6px;
+}
+input:focus,select:focus,.btn:focus-visible,summary:focus-visible {outline:3px solid var(--blue); outline-offset:2px;}
+.municipio-select,.notify {margin:1rem 0; padding:1rem; border:1px solid var(--bd); border-radius:8px; background:var(--tint);}
+.municipio-select p,.notify p {margin:.4rem 0 0; color:var(--mut); font-size:.9rem;}
+.notify {background:transparent;}
+.notify label {display:flex; align-items:flex-start; gap:.65rem;}
+.notify input {width:auto; margin-top:.3rem; accent-color:var(--deep);}
+section {padding:1.5rem 0 .6rem;}
+section::before {
+  content:""; display:block; height:.75rem; margin-bottom:1.1rem;
+  background:linear-gradient(var(--green) 0 .25rem, transparent .25rem .5rem, var(--blue) .5rem .75rem);
+}
+.head {display:flex; flex-wrap:wrap; align-items:center; gap:.5rem .7rem;}
+h2 {font:800 1.5rem/1.15 "Bricolage Grotesque",sans-serif; margin:0;}
+.chip {
+  background:var(--navy); color:#fff; font-weight:700; font-size:.8rem;
+  padding:.1rem .65rem; border-radius:999px;
+}
+.sub {margin:.3rem 0 .9rem; color:var(--mut);}
+details {margin-bottom:1rem;}
+summary {cursor:pointer; font-weight:700; color:var(--link); text-decoration:underline; text-underline-offset:3px;}
+pre {
+  white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; font-size:.93rem;
+  background:var(--tint); border-left:4px solid var(--blue); padding:.9rem 1rem;
+  margin:.7rem 0; border-radius:0 6px 6px 0;
+}
+.row {border-left:4px solid var(--deep); padding:.35rem 0 .1rem .9rem; margin:.8rem 0;}
+.row p {margin:0 0 .5rem; font-size:.92rem; color:var(--mut); overflow-wrap:anywhere;}
+.btn {
+  display:inline-block; margin:0 .45rem .45rem 0; padding:.6rem 1rem; font:inherit;
+  font-weight:700; font-size:.93rem; color:var(--tx); background:transparent;
+  border:2px solid var(--btn); border-radius:6px; cursor:pointer; text-decoration:none;
+}
+.btn:hover {background:var(--tint);}
+.btn.primary {background:var(--btn); color:var(--btnx);}
+.why p {margin:.9rem 0 0; padding-left:.9rem; border-left:4px solid var(--blue);}
+.how ol {margin:.8rem 0 .4rem; padding-left:1.4rem;}
+.how li {margin:.35rem 0;}
+.how li::marker {color:var(--deep); font-weight:700;}
+.note,.foot {font-size:.9rem; color:var(--mut);}
+.foot {border-top:3px solid var(--blue); padding-top:1rem; margin-top:1.6rem; font-size:.85rem;}
+.error-box {padding:1rem; border:2px solid #b42318; border-radius:8px; background:var(--tint); color:#b42318; margin:.8rem 0;}
+@media(prefers-color-scheme:dark) {.error-box {color:#ff9a8f; border-color:#ff9a8f;}}
+@media(max-width:32rem) {
+  .mid-inner {flex-direction:column-reverse; align-items:flex-start; gap:1rem;}
+  .mid svg {width:4.5rem; height:4.5rem;}
+}
+@media(max-width:30rem) {.who {grid-template-columns:1fr;}}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="band"></div>
+  <div class="mid">
+    <div class="mid-inner">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <rect width="100" height="100" rx="12" fill="#00E600"/>
+        <path d="M0 78 L0 58 L100 22 L100 42 Z" fill="#fff"/>
+        <circle cx="50" cy="50" r="22" fill="#0080FF" stroke="#fff" stroke-width="3"/>
+        <g fill="#fff"><circle cx="50" cy="38" r="2.6"/><circle cx="50" cy="62" r="2.6"/><circle cx="38" cy="50" r="2.6"/><circle cx="62" cy="50" r="2.6"/><circle cx="55" cy="47" r="1.8"/></g>
+      </svg>
+      <div>
+        <h1>Cobre quem decide sobre a crise climática no Paraná</h1>
+        <p class="lead">
+          Tempestades, vendavais, enchentes e estiagens já atingem famílias paranaenses.
+          Uma mensagem sua ao governo, aos parlamentares e às prefeituras ajuda a transformar
+          preocupação em compromisso público.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="band"></div>
+</header>
+
+<main>
+
+<section class="why">
+  <div class="head"><h2>Por que esta mobilização importa</h2></div>
+  <p><strong>O que queremos.</strong> Respostas e compromissos públicos, com metas e prazos: um plano estadual de adaptação climática, orçamento permanente para prevenção e reconstrução, mapeamento de áreas de risco, sistemas de alerta e apoio aos municípios atingidos.</p>
+  <p><strong>Por que a política.</strong> A crise climática não se resolve apenas com ações individuais. Onde construir, como proteger rios e encostas, quanto investir em drenagem, defesa civil e reconstrução são decisões públicas. Quem decide responde à população, e participar é um direito.</p>
+  <p><strong>Por que e-mail.</strong> É um canal formal, gratuito e acessível. A mensagem chega aos gabinetes, registra uma reivindicação e pode ser usada depois para acompanhar e cobrar respostas.</p>
+  <p><strong>Por que muita gente ao mesmo tempo.</strong> Mensagens de diferentes municípios mostram que a população acompanha as decisões e exige providências.</p>
+  <p><strong>Por que agora.</strong> O Paraná tem novo governo a partir de janeiro de 2027. É o momento de exigir que prevenção, adaptação climática e redução de riscos entrem no planejamento e no orçamento público.</p>
+</section>
+
+<section class="how">
+  <div class="head"><h2>Como participar</h2></div>
+  <ol>
+    <li>Escreva seu nome e sua cidade nos campos abaixo.</li>
+    <li>Para cobrar uma prefeitura, selecione um dos municípios da relação.</li>
+    <li>Escolha o destinatário e clique em “Abrir no meu e-mail” ou “Abrir no Gmail”.</li>
+    <li>Leia a mensagem, acrescente algo seu se quiser e envie.</li>
+    <li>Para enviar uma cópia para a Primavera Brasileira, marque a opção de CCO antes de abrir o e-mail.</li>
+  </ol>
+  <p class="note">Seu nome e sua cidade são utilizados para montar a mensagem no navegador. A opção de CCO é voluntária. A página não consegue confirmar a entrega das mensagens aos destinatários.</p>
+</section>
+
+<div class="who">
+  <label>
+    Seu nome
+    <input id="nome" autocomplete="name" placeholder="Maria Silva">
+  </label>
+  <label>
+    Sua cidade
+    <input id="cidade" autocomplete="address-level2" placeholder="Londrina">
+  </label>
+</div>
+
+<div class="municipio-select">
+  <label for="municipio">
+    Prefeitura a cobrar
+    <select id="municipio">
+      <option value="">Selecione um município</option>
+    </select>
+  </label>
+  <p>
+    Selecione o município pelo nome. A relação tem
+    <strong id="totalMunicipios">0</strong> municípios: os que estão em alerta do Inmet e os
+    demais citados nos avisos da Defesa Civil e do Simepar. Se o e-mail da prefeitura falhar,
+    use o botão de busca pelo “Fale conosco” oficial.
+  </p>
+</div>
+
+<div class="notify">
+  <label for="receberCopia">
+    <input type="checkbox" id="receberCopia">
+    Enviar uma cópia oculta (CCO) para Primavera Brasileira
+  </label>
+  <p>
+    Ao marcar, o endereço receberá uma cópia integral da mensagem, caso você conclua
+    o envio no seu aplicativo de e-mail ou no Gmail. A opção é voluntária.
+  </p>
+</div>
+
+<div id="out" aria-live="polite"></div>
+<div id="erro" class="error-box" role="alert" hidden></div>
+
+<p class="foot">
+  Os contatos foram informados para esta atualização e não são validados automaticamente
+  por esta página; podem mudar ou conter erros. Em caso de falha, consulte o portal oficial
+  da prefeitura, da Assembleia Legislativa ou da Câmara dos Deputados. As relações de
+  deputados estaduais e federais são parciais e não representam a totalidade das bancadas.
+</p>
+
+</main>
+
+<script>
+/* Dados das prefeituras do PR. Para atualizar um e-mail, edite só este bloco.
+   alerta/outros: nomes separados por "|".
+   Padrão de e-mail: gabinete@<nome sem acento e sem espaços>.pr.gov.br
+   excecoes: municípios cujo e-mail foge do padrão. */
+window.MUNICIPIOS_PR = {
+alerta: "Abatiá|Adrianópolis|Altamira do Paraná|Altônia|Alto Paraíso|Alto Paraná|Alto Piquiri|Alvorada do Sul|Amaporã|Andirá|Ângulo|Antonina|Apucarana|Arapongas|Arapoti|Arapuã|Araruna|Ariranha do Ivaí|Assaí|Assis Chateaubriand|Astorga|Atalaia|Bandeirantes|Barbosa Ferraz|Barra do Jacaré|Bela Vista do Paraíso|Boa Esperança|Boa Ventura de São Roque|Bocaiúva do Sul|Bom Sucesso|Borrazópolis|Brasilândia do Sul|Cafeara|Cafezal do Sul|Califórnia|Cambará|Cambé|Cambira|Campina da Lagoa|Campina Grande do Sul|Campo Largo|Campo Mourão|Cândido de Abreu|Carambeí|Carlópolis|Castro|Centenário do Sul|Cerro Azul|Cianorte|Cidade Gaúcha|Colorado|Congonhinhas|Conselheiro Mairinck|Corbélia|Cornélio Procópio|Corumbataí do Sul|Cruzeiro do Oeste|Cruzeiro do Sul|Cruzmaltina|Curiúva|Diamante do Norte|Douradina|Doutor Camargo|Doutor Ulysses|Engenheiro Beltrão|Esperança Nova|Farol|Faxinal|Fênix|Figueira|Floraí|Floresta|Florestópolis|Flórida|Formosa do Oeste|Francisco Alves|Godoy Moreira|Goioerê|Grandes Rios|Guaíra|Guairaçá|Guapirama|Guaporema|Guaraci|Guaraqueçaba|Ibaiti|Ibiporã|Icaraíma|Iguaraçu|Imbaú|Inajá|Indianópolis|Ipiranga|Iporã|Iracema do Oeste|Iretama|Itaguajé|Itambaracá|Itambé|Itaperuçu|Itaúna do Sul|Ivaiporã|Ivaté|Ivatuba|Jaboti|Jacarezinho|Jaguapitã|Jaguariaíva|Jandaia do Sul|Janiópolis|Japira|Japurá|Jardim Alegre|Jardim Olinda|Jataizinho|Jesuítas|Joaquim Távora|Jundiaí do Sul|Juranda|Jussara|Kaloré|Lidianópolis|Loanda|Lobato|Londrina|Luiziana|Lunardelli|Lupionópolis|Mamborê|Mandaguaçu|Mandaguari|Manoel Ribas|Marechal Cândido Rondon|Maria Helena|Marialva|Marilândia do Sul|Marilena|Mariluz|Maringá|Marumbi|Mato Rico|Mauá da Serra|Mercedes|Mirador|Miraselva|Moreira Sales|Munhoz de Melo|Nossa Senhora das Graças|Nova Aliança do Ivaí|Nova América da Colina|Nova Aurora|Nova Cantu|Nova Esperança|Nova Fátima|Nova Londrina|Nova Olímpia|Nova Santa Bárbara|Nova Santa Rosa|Nova Tebas|Novo Itacolomi|Ortigueira|Ourizona|Paiçandu|Palotina|Paraíso do Norte|Paranacity|Paranapoema|Paranavaí|Peabiru|Perobal|Pérola|Pinhalão|Piraí do Sul|Pitanga|Pitangueiras|Planaltina do Paraná|Ponta Grossa|Porecatu|Porto Rico|Prado Ferreira|Presidente Castelo Branco|Primeiro de Maio|Quarto Centenário|Quatiguá|Querência do Norte|Quinta do Sol|Rancho Alegre|Rancho Alegre D'Oeste|Reserva|Ribeirão Claro|Ribeirão do Pinhal|Rio Bom|Rio Branco do Ivaí|Rio Branco do Sul|Rolândia|Roncador|Rondon|Rosário do Ivaí|Sabáudia|Salto do Itararé|Santa Amélia|Santa Cecília do Pavão|Santa Cruz de Monte Castelo|Santa Fé|Santa Inês|Santa Isabel do Ivaí|Santa Mariana|Santa Mônica|Santana do Itararé|Santo Antônio da Platina|Santo Antônio do Caiuá|Santo Antônio do Paraíso|Santo Inácio|São Carlos do Ivaí|São Jerônimo da Serra|São João do Caiuá|São João do Ivaí|São Jorge do Ivaí|São Jorge do Patrocínio|São José da Boa Vista|São Manoel do Paraná|São Pedro do Ivaí|São Pedro do Paraná|São Sebastião da Amoreira|São Tomé|Sapopema|Sarandi|Sengés|Sertaneja|Sertanópolis|Siqueira Campos|Tamarana|Tamboara|Tapejara|Tapira|Telêmaco Borba|Terra Boa|Terra Rica|Terra Roxa|Tibagi|Toledo|Tomazina|Tunas do Paraná|Tuneiras do Oeste|Ubiratã|Umuarama|Uniflor|Uraí|Ventania|Wenceslau Braz|Xambrê",
+
+outros: "Antônio Olinto|Araucária|Balsa Nova|Bituruna|Campo Magro|Cascavel|Curitiba|Dois Vizinhos|Enéas Marques|Espigão Alto do Iguaçu|Fazenda Rio Grande|Fernandes Pinheiro|Flor da Serra do Sul|Foz do Iguaçu|Guarapuava|Guaratuba|Matelândia|Morretes|Paranaguá|Pato Branco|Quatro Barras|Quitandinha|Ramilândia|Realeza|São João do Triunfo|São Jorge d'Oeste|São José dos Pinhais|União da Vitória",
+
+excecoes: {
+"Altônia":"prefeito@altonia.pr.gov.br",
+"Alto Paraíso":"adminstracao@altoparaiso.pr.gov.br",
+"Alto Paraná":"prefeito@altoparana.pr.gov.br",
+"Alto Piquiri":"contato@altopiquiri.pr.gov.br",
+"Ângulo":"prefeito@angulo.pr.gov.br",
+"Arapoti":"chefia.gabinete@arapoti.pr.gov.br",
+"Araruna":"prefeitura@araruna.pr.gov.br",
+"Assis Chateaubriand":"contato@assischateaubriand.pr.gov.br",
+"Campina Grande do Sul":"gabinete@pmcgs.pr.gov.br",
+"Marilena":"pmm-licitacao@marilena.pr.gov.br",
+"Maringá":"gapre@maringa.pr.gov.br",
+"Araucária":"prefeito@araucaria.pr.gov.br",
+"Dois Vizinhos":"administracao@doisvizinhos.pr.gov.br",
+"Foz do Iguaçu":"gabinete@pmfi.pr.gov.br",
+"Paranaguá":"gabinete.prefeito@paranagua.pr.gov.br",
+"São José dos Pinhais":"gabinete@sjp.pr.gov.br"
+}
+};
+</script>
+
+<script>
+"use strict";
+
+(() => {
+
+const GRUPO = 10;
+const EMAIL_COPIA = "apautaepreta@gmail.com";
+
+/* 1. GOVERNADOR ATUAL — Carlos Massa Ratinho Junior */
+const gov = ["agendacarlosmassa@governadoria.pr.gov.br"];
+
+/* 2. DEPUTADOS ESTADUAIS (relação parcial) */
+const estaduais = [
+  "gabinete.adaolitro@assembleia.pr.leg.br","traiano@assembleia.pr.leg.br",
+  "deputadoamaro@assembleia.pr.leg.br","contato@alexandrecuri.com.br",
+  "deputadoalisson@assembleia.pr.leg.br","dep.anajulia@assembleia.pr.leg.br",
+  "contato@anibelli.com.br","gabinetearilson@assembleia.pr.leg.br",
+  "artagaojunior@assembleia.pr.leg.br","deputadobatatinha@assembleia.pr.leg.br",
+  "cantoramaralima@assembleia.pr.leg.br","deputadaclohara@gmail.com",
+  "cobrareporter2015@gmail.com","cristinasilvestri@assembleia.pr.leg.br",
+  "deputadodelegadojacovos@gmail.com","delegadotitobarichello@assembleia.pr.leg.br",
+  "deniancouto@hotmail.com","depmariavictoria@assembleia.pr.leg.br",
+  "deputado@matheusvermelho.com.br","moacyrfadel@assembleia.pr.leg.br",
+  "contato@neyleprovost.com.br","paulogomesdep@gmail.com",
+  "renatofreitas@assembleia.pr.leg.br","nelsonjustus@terra.com.br",
+  "ppbazana@uol.com.br","lemos@professorlemos.com.br"
+];
+
+/* 3. DEPUTADOS FEDERAIS (relação parcial) */
+const federais = [
+  "dep.alielmachado","dep.betopreto","dep.betoricha","dep.caroldartora",
+  "dep.delegadomatheuslaiola","dep.diegogarcia","dep.dilceusperafico","dep.welter",
+  "dep.felipefrancischini","dep.filipebarros","dep.geraldomendes","dep.gleisihoffmann",
+  "dep.itamarpaim","dep.leandre","dep.lucianoducci","dep.luiscanziani",
+  "dep.luizcarloshauly","dep.luiznishimori","dep.santinroveda","dep.christianedesouzayared"
+].map(l=>l+"@camara.leg.br");
+
+/* 4. GOVERNADOR ELEITO — Sergio Moro (posse em 06/01/2027).
+   Contato do gabinete no Senado, enquanto não houver e-mail institucional de governador. */
+const moro = ["sen.sergiomoro@senado.leg.br"];
+
+/* MODELOS DE E-MAIL — ORDEM VISUAL DAS SEÇÕES */
+const S = [
+{
+  titulo:"Governador atual do Paraná",
+  sub:"Cobrança institucional ao Governo do Estado, por meio da agenda do governador Carlos Massa Ratinho Junior.",
+  para:gov,
+  assunto:"Crise climática no PR: cobramos prevenção, adaptação e reconstrução",
+  corpo:(n,c)=>`Senhor Governador,
+
+Sou ${n}, moro em ${c}, no Paraná, e escrevo preocupado(a) com os impactos dos eventos climáticos extremos em nosso estado.
+
+Tempestades, vendavais, chuvas intensas, deslizamentos e estiagens mostram a necessidade de políticas públicas permanentes de prevenção, adaptação e proteção da população.
+
+Peço ao Governo do Estado:
+
+1. Uma política estadual permanente de adaptação climática, com metas, prazos, responsáveis e indicadores públicos.
+
+2. Orçamento permanente para prevenção de desastres, defesa civil, drenagem, contenção de encostas e recuperação ambiental.
+
+3. Atualização e divulgação dos mapas de risco, com identificação das populações expostas e reassentamento digno quando necessário.
+
+4. Fortalecimento do monitoramento, dos alertas antecipados, da comunicação de risco e dos protocolos de evacuação.
+
+5. Apoio técnico e financeiro aos municípios, especialmente aqueles com menor capacidade administrativa e fiscal.
+
+6. Transparência sobre os recursos aplicados na prevenção e na resposta aos desastres.
+
+Solicito resposta por escrito, informando as medidas em andamento, as prioridades do governo e os prazos de execução.
+
+Atenciosamente,
+
+${n}
+${c}`
+},
+{
+  titulo:"Deputados estaduais",
+  sub:"Assembleia Legislativa do Paraná. Relação parcial com contatos individuais informados.",
+  para:estaduais,
+  assunto:"Crise climática no PR: qual é o seu posicionamento?",
+  corpo:(n,c)=>`Excelentíssimo(a) Deputado(a) Estadual,
+
+Sou ${n}, eleitor(a) de ${c}, no Paraná.
+
+Os eventos climáticos extremos mostram que nosso estado precisa de políticas permanentes de prevenção, adaptação e proteção da população. A Assembleia Legislativa tem papel central na elaboração de leis, na definição do orçamento e na fiscalização do Poder Executivo.
+
+Peço que o(a) senhor(a):
+
+1. Apoie políticas estaduais permanentes de adaptação climática e redução de riscos.
+
+2. Defenda recursos orçamentários para prevenção, defesa civil, drenagem, proteção de encostas e reconstrução.
+
+3. Fiscalize a aplicação dos recursos destinados à prevenção e à resposta a desastres.
+
+4. Promova debates e audiências públicas com a participação das comunidades atingidas.
+
+Aguardo resposta com seu posicionamento e as iniciativas que pretende defender no exercício do mandato.
+
+Atenciosamente,
+
+${n}
+${c}`
+},
+{
+  titulo:"Deputados federais",
+  sub:"Bancada paranaense na Câmara dos Deputados. Relação parcial com contatos individuais informados.",
+  para:federais,
+  assunto:"Crise climática no PR: cobramos compromisso da bancada federal",
+  corpo:(n,c)=>`Excelentíssimo(a) Deputado(a) Federal,
+
+Sou ${n}, eleitor(a) de ${c}, no Paraná.
+
+Nosso estado enfrenta tempestades, vendavais, enchentes e estiagens cada vez mais frequentes. Enfrentá-los exige recursos, planejamento e compromisso de todas as esferas de governo. O Congresso Nacional tem papel decisivo na aprovação de leis, na definição do orçamento federal e na fiscalização das políticas públicas.
+
+Peço que o(a) senhor(a):
+
+1. Defenda recursos federais permanentes para prevenção de desastres, adaptação climática e reconstrução.
+
+2. Apoie políticas nacionais de redução de riscos, proteção ambiental e fortalecimento da Defesa Civil.
+
+3. Fiscalize a execução e a transparência dos recursos federais destinados ao Paraná e aos seus municípios.
+
+4. Defenda investimentos em infraestrutura resiliente, drenagem urbana e proteção das populações vulneráveis.
+
+Aguardo resposta sobre seu posicionamento e as ações que pretende desenvolver em defesa do Paraná.
+
+Atenciosamente,
+
+${n}
+${c}`
+},
+{
+  titulo:"Ao governador eleito do PR — Sergio Moro",
+  sub:"Envio individual ao governador eleito, com posse em 6 de janeiro de 2027. Enquanto não houver e-mail institucional de governador, o contato é o do gabinete no Senado.",
+  para:moro,
+  assunto:"Ao governador eleito do PR: compromisso com prevenção e justiça climática",
+  corpo:(n,c)=>`Prezado Governador eleito Sergio Moro,
+
+Sou ${n}, morador(a) de ${c}, no Paraná, e escrevo para apresentar uma reivindicação àquele que conduzirá o próximo governo estadual.
+
+Eventos climáticos extremos não podem continuar sendo tratados como episódios isolados, com resposta apenas depois que vidas, moradias e estruturas públicas já foram atingidas. A próxima gestão pode transformar essa experiência em política permanente de prevenção, adaptação e proteção da vida.
+
+Solicito que assuma publicamente compromissos concretos com:
+
+1. PLANO ESTADUAL DE ADAPTAÇÃO CLIMÁTICA: plano com metas, prazos, indicadores e responsáveis, articulado com os municípios e com participação popular.
+
+2. ORÇAMENTO PARA PREVENÇÃO: recursos permanentes e suficientes para Defesa Civil, monitoramento, drenagem, contenção de encostas e redução de riscos, sem depender apenas de verbas emergenciais.
+
+3. MAPEAMENTO DAS ÁREAS DE RISCO: atualização e divulgação dos mapas de risco e proteção das famílias expostas, com reassentamento digno quando necessário.
+
+4. ALERTA E PREPARAÇÃO: monitoramento, alerta antecipado, evacuação e acolhimento, garantindo que a informação chegue também às comunidades rurais e periféricas.
+
+5. RECONSTRUÇÃO COM JUSTIÇA SOCIAL: apoio contínuo às famílias atingidas e recuperação de moradias, escolas, unidades de saúde, estradas e serviços essenciais, priorizando quem mais precisa.
+
+6. APOIO AOS MUNICÍPIOS: assistência técnica e financeira para planos de contingência e adaptação, especialmente nos municípios com menor capacidade administrativa e fiscal.
+
+7. TRANSPARÊNCIA E PARTICIPAÇÃO: divulgação dos recursos disponíveis e aplicados, dos cronogramas e dos resultados, com controle social.
+
+Como futuro governador, é fundamental que o senhor apresente à sociedade compromissos verificáveis, com metas, orçamento e prazos. A população paranaense tem o direito de conhecer suas prioridades para a prevenção de desastres e a adaptação às mudanças climáticas.
+
+Solicito resposta por escrito, com seu posicionamento sobre os pontos apresentados e as medidas que pretende implementar.
+
+Atenciosamente,
+
+${n}
+${c}`
+}
+];
+
+/* FUNÇÕES GERAIS */
+const $ = id => document.getElementById(id);
+const enc = encodeURIComponent;
+
+/* PREFEITURAS — e-mail pelo padrão gabinete@<slug>.pr.gov.br, com exceções */
+const DADOS = window.MUNICIPIOS_PR || {alerta:"",outros:"",excecoes:{}};
+const slug = nome => nome.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]/g,"");
+const montar = (lista,grupo) => lista.split("|").filter(Boolean).map(nome=>({
+  nome,
+  grupo,
+  para:[DADOS.excecoes[nome] || `gabinete@${slug(nome)}.pr.gov.br`]
+}));
+const porNome = (a,b) => a.nome.localeCompare(b.nome,"pt-BR");
+const emAlerta = montar(DADOS.alerta,"alerta").sort(porNome);
+const demais = montar(DADOS.outros,"outros").sort(porNome);
+const listaMunicipios = [...emAlerta,...demais];
+
+/* ABERTURA NO APLICATIVO DE E-MAIL */
+function mailto(destinos,assunto,corpo) {
+  let url=`mailto:${destinos.join(",")}?subject=${enc(assunto)}&body=${enc(corpo.replace(/\n/g,"\r\n"))}`;
+  if($("receberCopia").checked) url+=`&bcc=${enc(EMAIL_COPIA)}`;
+  return url;
+}
+
+/* ABERTURA NO GMAIL */
+function gmail(destinos,assunto,corpo) {
+  let url=`https://mail.google.com/mail/?view=cm&fs=1&to=${enc(destinos.join(","))}&su=${enc(assunto)}&body=${enc(corpo)}`;
+  if($("receberCopia").checked) url+=`&bcc=${enc(EMAIL_COPIA)}`;
+  return url;
+}
+
+/* CÓPIA DE TEXTO */
+async function copiar(botao,texto) {
+  const original=botao.textContent;
+  try {
+    if(navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(texto);
+    } else {
+      const campo=document.createElement("textarea");
+      campo.value=texto;
+      campo.style.position="fixed";
+      campo.style.opacity="0";
+      document.body.appendChild(campo);
+      campo.select();
+      const ok=document.execCommand("copy");
+      campo.remove();
+      if(!ok) throw new Error("Cópia não autorizada pelo navegador.");
+    }
+    botao.textContent="Copiado!";
+  } catch(erro) {
+    console.error(erro);
+    botao.textContent="Falha ao copiar";
+  }
+  setTimeout(()=>botao.textContent=original,1800);
+}
+
+/* CRIAÇÃO DE ELEMENTOS */
+function el(tag,cls,texto) {
+  const e=document.createElement(tag);
+  if(cls) e.className=cls;
+  if(texto!==undefined) e.textContent=texto;
+  return e;
+}
+
+function botaoCopiar(rotulo,textoFn) {
+  const b=el("button","btn",rotulo);
+  b.type="button";
+  b.addEventListener("click",()=>copiar(b,textoFn()));
+  return b;
+}
+
+/* BOTÕES DE ENVIO */
+function montarBotoes(destinos,assunto,corpo,row) {
+  const email=el("a","btn primary","Abrir no meu e-mail");
+  email.href=mailto(destinos,assunto,corpo);
+
+  const g=el("a","btn","Abrir no Gmail");
+  g.href=gmail(destinos,assunto,corpo);
+  g.target="_blank";
+  g.rel="noopener noreferrer";
+
+  row.append(
+    email,g,
+    botaoCopiar("Copiar destinatários",()=>destinos.join(", ")),
+    botaoCopiar("Copiar mensagem completa",()=>`Para: ${destinos.join(", ")}\nAssunto: ${assunto}\n\n${corpo}`)
+  );
+}
+
+/* FALE CONOSCO DA PREFEITURA (BUSCA) */
+function botaoFale(nome) {
+  const a=el("a","btn","Buscar o Fale conosco da prefeitura");
+  a.href="https://www.google.com/search?q="+enc(`Prefeitura Municipal de ${nome} PR fale conosco`);
+  a.target="_blank";
+  a.rel="noopener noreferrer";
+  return a;
+}
+
+/* SEÇÃO GENÉRICA */
+function secao({titulo,sub,para,assunto,corpo,chip,fale}) {
+  const sec=el("section");
+  const head=el("div","head");
+  head.append(el("h2","",titulo));
+  if(chip) head.append(el("span","chip",chip));
+  sec.append(head,el("p","sub",sub));
+
+  const detalhes=el("details");
+  const pre=el("pre","",`Assunto: ${assunto}\n\n${corpo}`);
+  detalhes.append(el("summary","","Ver a mensagem"),pre,botaoCopiar("Copiar mensagem",()=>corpo));
+  sec.append(detalhes);
+
+  const grupos=Math.ceil(para.length/GRUPO);
+  for(let i=0;i<grupos;i++) {
+    const grupo=para.slice(i*GRUPO,(i+1)*GRUPO);
+    const row=el("div","row");
+    row.append(el("p","",grupos>1
+      ? `Grupo ${i+1} de ${grupos}, com ${grupo.length} destinatários`
+      : `Envio individual: ${grupo.join(", ")}`));
+    montarBotoes(grupo,assunto,corpo,row);
+    if(fale) row.append(botaoFale(fale));
+    sec.append(row);
+  }
+  return sec;
+}
+
+/* RENDERIZAÇÃO */
+function render() {
+  const nome=$("nome").value.trim() || "[seu nome]";
+  const cidade=$("cidade").value.trim() || "[sua cidade]";
+  const out=$("out");
+  out.replaceChildren();
+
+  S.forEach((item,i)=>{
+    out.append(secao({
+      titulo:`${i+1}. ${item.titulo}`,
+      sub:item.sub,
+      para:item.para,
+      assunto:item.assunto,
+      corpo:item.corpo(nome,cidade),
+      chip:`${item.para.length} destinatário(s)`
+    }));
+  });
+
+  /* SEÇÃO MUNICIPAL — APÓS AS QUATRO SEÇÕES */
+  const m=listaMunicipios.find(x=>x.nome===$("municipio").value);
+  if(!m) return;
+
+  const corpo=`À Prefeitura Municipal de ${m.nome},
+A/C do Gabinete do(a) Prefeito(a),
+
+Sou ${nome}, morador(a) de ${cidade}, e escrevo para solicitar informações e providências sobre a prevenção, a preparação e a resposta do Município diante dos eventos climáticos extremos.
+
+Tempestades, vendavais, granizo, enxurradas, deslizamentos e estiagens podem comprometer vidas, moradias, serviços públicos, atividades econômicas e infraestrutura. Os alertas recentes emitidos para o Paraná reforçam a importância de políticas municipais permanentes de prevenção, adaptação e proteção da população.
+
+Por isso, solicito:
+
+1. Informações sobre o planejamento municipal de prevenção e adaptação, incluindo o mapeamento de áreas de risco e as medidas para reduzir a exposição da população.
+
+2. Informações sobre a estrutura e os protocolos da Defesa Civil municipal, incluindo sistemas de alerta, canais de comunicação, evacuação e acolhimento.
+
+3. A divulgação das medidas de assistência às famílias eventualmente atingidas, incluindo abrigo, alimentação, água, itens de primeira necessidade e apoio à recuperação das moradias.
+
+4. Informações sobre os recursos municipais, estaduais e federais destinados à prevenção, à resposta e à reconstrução, com indicação de sua aplicação e dos mecanismos de transparência.
+
+5. O cronograma e as prioridades das ações de recuperação e prevenção, com responsáveis e formas de acompanhamento pela população.
+
+6. Informações sobre a integração do Município com os planos e programas estaduais e federais de adaptação climática e redução de riscos.
+
+Peço que a Prefeitura informe quais providências estão em andamento, quais são as prioridades do Município e onde a população poderá acompanhar os dados e a execução das medidas.
+
+Solicito resposta por escrito a esta mensagem, com indicação dos canais oficiais de acompanhamento.
+
+Atenciosamente,
+
+${nome}
+${cidade}`;
+
+  out.append(secao({
+    titulo:`5. Prefeitura de ${m.nome}`,
+    sub:"Mensagem municipal individualizada para o gabinete da prefeitura. O e-mail foi informado, mas não foi confirmado: se a mensagem voltar, use o Fale conosco.",
+    para:m.para,
+    assunto:`Crise climática no PR: solicitação de informações e providências — ${m.nome}`,
+    corpo,
+    fale:m.nome
+  }));
+}
+
+/* INICIALIZAÇÃO E VALIDAÇÃO */
+function iniciar() {
+  try {
+    const ausentes=["nome","cidade","municipio","receberCopia","totalMunicipios","out","erro"]
+      .filter(id=>!$(id));
+    if(ausentes.length) throw new Error("Elementos não encontrados: "+ausentes.join(", "));
+
+    if(emAlerta.length<250) throw new Error("Lista de municípios em alerta incompleta.");
+    if(!gov.length || !moro.length || !estaduais.length || !federais.length) {
+      throw new Error("Há uma lista de contatos vazia.");
+    }
+
+    [["Municípios em alerta (Inmet)",emAlerta],["Demais municípios citados nos avisos",demais]].forEach(([rotulo,lista])=>{
+      const g=document.createElement("optgroup");
+      g.label=rotulo;
+      lista.forEach(m=>{
+        const o=document.createElement("option");
+        o.value=m.nome;
+        o.textContent=m.nome;
+        g.appendChild(o);
+      });
+      $("municipio").appendChild(g);
+    });
+
+    $("totalMunicipios").textContent=String(listaMunicipios.length);
+
+    ["nome","cidade"].forEach(id=>$(id).addEventListener("input",render));
+    $("municipio").addEventListener("change",render);
+    $("receberCopia").addEventListener("change",render);
+
+    render();
+  } catch(erro) {
+    console.error("Erro ao iniciar a ferramenta:",erro);
+    $("erro").hidden=false;
+    $("erro").textContent="A ferramenta encontrou um problema ao iniciar: "+erro.message+
+      ". Verifique se o arquivo foi salvo integralmente com a extensão .html.";
+  }
+}
+
+if(document.readyState==="loading") {
+  document.addEventListener("DOMContentLoaded",iniciar,{once:true});
+} else {
+  iniciar();
+}
+
+})();
+</script>
+
+</body>
+</html>
